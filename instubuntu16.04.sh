@@ -6,12 +6,16 @@
 
 DEBIAN_FRONTEND=noninteractive
 
-echo "Installing the packages dependencies to GNS3..."
+echo "Installing and configure the packages dependencies to GNS3..."
+apt-key adv --keyserver hkp://p80.pool.sks-keyservers.net:80 --recv-keys 58118E89F3A912897C070ADBF76221572C52609D
+echo "deb https://apt.dockerproject.org/repo ubuntu-xenial main" >   /etc/apt/sources.list.d/docker.list
+apt-get update
 apt-get install --assume-yes -y qemu-kvm libvirt-bin ubuntu-vm-builder bridge-utils \
 vlan git virt-manager vim-nox python3-dev python3-setuptools python3-pyqt5 \
 python3-pyqt5.qtsvg python3-pyqt5.qtwebkit python3-ws4py python3-netifaces \
 python3-pip build-essential cmake uuid-dev libelf-dev libpcap-dev wireshark \
-tcpdump playonlinux cpulimit
+tcpdump playonlinux cpulimit apt-transport-https ca-certificates linux-image-extra-$(uname -r) \
+linux-image-extra-virtual
 
 
 echo "Downloading the sources and dependencies to GNS3..."
@@ -54,6 +58,11 @@ echo "Installing the uBridge..."
 cd ~/source/ubridge
 make
 make install
+
+echo "Intalling Docker..."
+apt-get install -y docker-engine
+groupadd docker
+usermod -aG docker $USER
 
 echo "Download mikrotik Image to virtualize..."
 cd ~/source
