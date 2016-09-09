@@ -7,11 +7,12 @@
 # command to install the lab enviroment:
 # curl -L http://goo.gl/sRhyzH | sudo bash
 
+export DEBIAN_FRONTEND=noninteractive
 echo "Installing and configure the packages dependencies to GNS3..."
 apt-key adv --keyserver hkp://p80.pool.sks-keyservers.net:80 --recv-keys 58118E89F3A912897C070ADBF76221572C52609D
 echo "deb https://apt.dockerproject.org/repo ubuntu-xenial main" >   /etc/apt/sources.list.d/docker.list
 apt-get update
-apt-get install --assume-yes -y qemu-kvm libvirt-bin ubuntu-vm-builder bridge-utils \
+apt-get install -q -y qemu-kvm libvirt-bin ubuntu-vm-builder bridge-utils \
 vlan git virt-manager vim-nox python3-dev python3-setuptools python3-pyqt5 \
 python3-pyqt5.qtsvg python3-pyqt5.qtwebkit python3-ws4py python3-netifaces \
 python3-pip build-essential cmake uuid-dev libelf-dev libpcap-dev wireshark \
@@ -73,6 +74,6 @@ unzip chr-6.34.6.img.zip
 rm -rf chr-6.34.6.img.zip
 
 echo "Config QEMU ..."
-curl -l https://raw.githubusercontent.com/radaction/mtlabinstaller/master/qemu-ifup > /etc/qemu-ifup
+curl -L https://raw.githubusercontent.com/radaction/mtlabinstaller/master/qemu-ifup > /etc/qemu-ifup
 
 chown -R $(whoami):$(whoami) ~/sources
