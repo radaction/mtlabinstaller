@@ -63,9 +63,6 @@ make install
 
 echo "Intalling Docker..."
 apt-get install -y docker-engine
-groupadd docker
-usermod -aG docker $(whoami)
-systemctl start docker
 
 echo "Download mikrotik Image to virtualize..."
 cd ~/sources
@@ -75,5 +72,3 @@ rm -rf chr-6.34.6.img.zip
 
 echo "Config QEMU ..."
 curl -L https://raw.githubusercontent.com/radaction/mtlabinstaller/master/qemu-ifup > /etc/qemu-ifup
-
-chown -R $(whoami):$(whoami) ~/sources
