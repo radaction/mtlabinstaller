@@ -70,4 +70,4 @@ wget http://download2.mikrotik.com/routeros/6.34.6/chr-6.34.6.img.zip
 unzip chr-6.34.6.img.zip
 rm -rf chr-6.34.6.img.zip
 
-chown -R $USER:$USER ~/sources
+chown -R $(whoami):$(whoami) ~/sources
