@@ -4,6 +4,8 @@
 # on Ubuntu 16.04 LTS 
 # @author Tiago Arnold <tiago at radaction.com.br>
 # You don't need licence to use it, take all free.
+# command to install the lab enviroment:
+# curl -L http://goo.gl/sRhyzH | sudo bash
 
 echo "Installing and configure the packages dependencies to GNS3..."
 apt-key adv --keyserver hkp://p80.pool.sks-keyservers.net:80 --recv-keys 58118E89F3A912897C070ADBF76221572C52609D
@@ -69,5 +71,8 @@ cd ~/sources
 wget http://download2.mikrotik.com/routeros/6.34.6/chr-6.34.6.img.zip
 unzip chr-6.34.6.img.zip
 rm -rf chr-6.34.6.img.zip
+
+echo "Config QEMU ..."
+curl -l https://raw.githubusercontent.com/radaction/mtlabinstaller/master/qemu-ifup > /etc/qemu-ifup
 
 chown -R $(whoami):$(whoami) ~/sources
