@@ -42,7 +42,7 @@ setcap cap_net_admin,cap_net_raw=ep /usr/bin/qemu-system-i386
 setcap cap_net_admin,cap_net_raw=ep /usr/bin/qemu-system-x86_64
 
 echo "Installing the VPCS..."
-cd ~/source/vpcs/src
+cd ~/sources/vpcs/src
 ./mk.sh
 mv vpcs /usr/local/bin/
 
@@ -55,7 +55,7 @@ cd ~/sources/gns3-gui
 python3 setup.py install
 
 echo "Installing the uBridge..."
-cd ~/source/ubridge
+cd ~/sources/ubridge
 make
 make install
 
@@ -65,6 +65,8 @@ groupadd docker
 usermod -aG docker $USER
 
 echo "Download mikrotik Image to virtualize..."
-cd ~/source
+cd ~/sources
 wget http://download2.mikrotik.com/routeros/6.34.6/chr-6.34.6.img.zip
 unzip chr-6.34.6.img.zip
+
+chown -R $USER:$USER ~/sources
