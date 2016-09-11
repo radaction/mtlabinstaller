@@ -7,6 +7,11 @@
 # command to install the lab enviroment:
 # curl -L http://goo.gl/sRhyzH | sudo bash
 
+if (($EUID != 0)); then
+  echo "Please run with sudo..."
+  exit
+fi
+
 export DEBIAN_FRONTEND=noninteractive
 echo "Installing and configure the packages dependencies to GNS3..."
 apt-key adv --keyserver hkp://p80.pool.sks-keyservers.net:80 --recv-keys 58118E89F3A912897C070ADBF76221572C52609D
@@ -63,12 +68,16 @@ make install
 
 echo "Intalling Docker..."
 apt-get install -y docker-engine
+usermod -aG docker $SUDO_USER
 
 echo "Download mikrotik Image to virtualize..."
 cd ~/sources
 wget http://download2.mikrotik.com/routeros/6.34.6/chr-6.34.6.img.zip
+wget http://download2.mikrotik.com/routeros/winbox/3.5/winbox.exe
 unzip chr-6.34.6.img.zip
 rm -rf chr-6.34.6.img.zip
 
 echo "Config QEMU ..."
 curl -L https://raw.githubusercontent.com/radaction/mtlabinstaller/master/qemu-ifup > /etc/qemu-ifup
+
+chown -R $SUDO_USER:$SUDO_USER ~/sources
