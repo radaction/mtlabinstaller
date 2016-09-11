@@ -80,4 +80,7 @@ rm -rf chr-6.34.6.img.zip
 echo "Config QEMU ..."
 curl -L https://raw.githubusercontent.com/radaction/mtlabinstaller/master/qemu-ifup > /etc/qemu-ifup
 
+echo "Setup the user system to use low level network tools..."
+echo "$SUDO_USER  ALL=(ALL) NOPASSWD: /bin/ip" >> /etc/sudoers
+
 chown -R $SUDO_USER:$SUDO_USER ~/sources
