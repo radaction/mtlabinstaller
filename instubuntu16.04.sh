@@ -73,7 +73,6 @@ usermod -aG docker $SUDO_USER
 echo -e "\n\nDownload mikrotik Image to virtualize..."
 cd ~/sources
 wget http://download2.mikrotik.com/routeros/6.34.6/chr-6.34.6.img.zip
-wget http://download2.mikrotik.com/routeros/winbox/3.5/winbox.exe
 unzip chr-6.34.6.img.zip
 rm -rf chr-6.34.6.img.zip
 
