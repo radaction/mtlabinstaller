@@ -17,6 +17,7 @@ export DEBIAN_FRONTEND=noninteractive
 echo -e "\n\nInstalling and configure the packages dependencies to GNS3..."
 apt-key adv --keyserver hkp://p80.pool.sks-keyservers.net:80 --recv-keys 58118E89F3A912897C070ADBF76221572C52609D
 echo "deb https://apt.dockerproject.org/repo ubuntu-xenial main" >   /etc/apt/sources.list.d/docker.list
+echo ttf-mscorefonts-installer msttcorefonts/accepted-mscorefonts-eula select true | debconf-set-selections
 apt-get update
 apt-get install -q -y qemu-kvm libvirt-bin ubuntu-vm-builder bridge-utils \
 vlan git virt-manager vim-nox python3-dev python3-setuptools python3-pyqt5 \

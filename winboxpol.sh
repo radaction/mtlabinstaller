@@ -25,7 +25,7 @@ POL_SetupWindow_presentation "$TITLE" "$EDITOR" "$EDITOR_URL" "RADACTION ROUTING
  
 POL_Wine_SelectPrefix "$PREFIX"
 POL_Wine_PrefixCreate "$WORKING_WINE_VERSION"
- 
+
 POL_Call POL_Install_corefonts
 
 mkdir -p "$WINEPREFIX/drive_c/Program Files/Winbox" 
