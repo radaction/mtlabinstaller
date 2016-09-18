@@ -25,7 +25,7 @@ vlan git virt-manager vim-nox python3-dev python3-setuptools python3-pyqt5 \
 python3-pyqt5.qtsvg python3-pyqt5.qtwebkit python3-ws4py python3-netifaces \
 python3-pip build-essential cmake uuid-dev libelf-dev libpcap-dev wireshark \
 tcpdump playonlinux cpulimit apt-transport-https ca-certificates linux-image-extra-$(uname -r) \
-linux-image-extra-virtual docker-engine
+linux-image-extra-virtual docker-engine konsole
 
 
 echo -e "\n\nDownloading the sources and dependencies to GNS3..."
