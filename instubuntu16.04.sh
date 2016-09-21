@@ -19,13 +19,14 @@ apt-key adv --keyserver hkp://p80.pool.sks-keyservers.net:80 --recv-keys 58118E8
 echo "deb https://apt.dockerproject.org/repo ubuntu-xenial main" >   /etc/apt/sources.list.d/docker.list
 echo ttf-mscorefonts-installer msttcorefonts/accepted-mscorefonts-eula select true | debconf-set-selections
 echo wireshark wireshark-common/install-setuid boolean true | debconf-set-selections
+echo wireshark-common	wireshark-common/install-setuid	boolean	true | debconf-set-selections
 apt-get update
 apt-get install -q -y qemu-kvm libvirt-bin ubuntu-vm-builder bridge-utils \
 vlan git virt-manager vim-nox python3-dev python3-setuptools python3-pyqt5 \
 python3-pyqt5.qtsvg python3-pyqt5.qtwebkit python3-ws4py python3-netifaces \
 python3-pip build-essential cmake uuid-dev libelf-dev libpcap-dev wireshark \
 tcpdump playonlinux cpulimit apt-transport-https ca-certificates linux-image-extra-$(uname -r) \
-linux-image-extra-virtual docker-engine konsole
+linux-image-extra-virtual docker-engine x11vnc xvfb konsole
 
 
 echo -e "\n\nDownloading the sources and dependencies to GNS3..."
@@ -50,6 +51,7 @@ echo -e "\n\nSetting the low level network permission..."
 setcap cap_net_admin,cap_net_raw=ep /usr/local/bin/dynamips
 setcap cap_net_admin,cap_net_raw=ep /usr/bin/qemu-system-i386
 setcap cap_net_admin,cap_net_raw=ep /usr/bin/qemu-system-x86_64
+setcap 'CAP_NET_RAW+eip CAP_NET_ADMIN+eip' /usr/bin/dumpcap
 
 echo -e "\n\nInstalling the VPCS..."
 cd ~/sources/vpcs/src
@@ -85,5 +87,6 @@ echo -e "\n\nSetup the user system to use low level network tools..."
 echo "$SUDO_USER  ALL=(ALL) NOPASSWD: /bin/ip" >> /etc/sudoers
 
 chown -R $SUDO_USER:$SUDO_USER ~/sources
+sudo usermod -a -G wireshark $SUDO_USER
 
 echo -e "\n\nFinished, enjoy..."
