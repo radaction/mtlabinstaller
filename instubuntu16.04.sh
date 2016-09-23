@@ -87,6 +87,6 @@ echo -e "\n\nSetup the user system to use low level network tools..."
 echo "$SUDO_USER  ALL=(ALL) NOPASSWD: /bin/ip" >> /etc/sudoers
 
 chown -R $SUDO_USER:$SUDO_USER ~/sources
-sudo usermod -a -G wireshark $SUDO_USER
+usermod -a -G wireshark $SUDO_USER
 
 echo -e "\n\nFinished, enjoy..."
